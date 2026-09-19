@@ -4,8 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/sonner";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const inter = localFont({
   src: "./fonts/InterVF.ttf",
@@ -28,7 +29,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   // className actually applies the font; variable applies nothing, it just stores the font name in a CSS variable.
   return (
-    <html lang="en" suppressHydrationWarning className={cn("font-sans", geist.variable)}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={cn("font-sans", geist.variable)}
+    >
       <body
         className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
       >
@@ -40,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           {children}
         </ThemeProvider>
+        <Toaster richColors position="top-right" />
       </body>
     </html>
   );

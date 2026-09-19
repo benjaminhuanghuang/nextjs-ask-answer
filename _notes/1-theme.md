@@ -20,3 +20,5 @@ Use ThemeProvider in the RootLayout
   </ThemeProvider>
 </html>
 ```
+
+## Theme toggle

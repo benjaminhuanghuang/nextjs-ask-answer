@@ -13,7 +13,7 @@ const Navbar = async () => {
   const session = await auth();
 
   return (
-    <nav className="flex-between background-light900_dark200 fixed z-50 w-full gap-5  p-6 shadow-light-300 dark:shadow-none sm:px-12">
+    <nav className="flex justify-between items-center; background-light900_dark200 fixed z-50 w-full gap-5  p-6 shadow-light-300 dark:shadow-none sm:px-12">
       <Link href={ROUTES.HOME} className="flex items-center gap-1">
         <Image
           src="/images/site-logo.svg"
@@ -23,7 +23,7 @@ const Navbar = async () => {
         />
 
         <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden">
-          Dev<span className="text-primary-500">Overflow</span>
+          Question<span className="text-primary-500">Answer</span>
         </p>
       </Link>
 

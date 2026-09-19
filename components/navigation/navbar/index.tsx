@@ -13,7 +13,7 @@ const Navbar = async () => {
   const session = await auth();
 
   return (
-    <nav className="flex justify-between items-center; background-light900_dark200 fixed z-50 w-full gap-5  p-6 shadow-light-300 dark:shadow-none sm:px-12">
+    <nav className="flex justify-between items-center bg-light-900 dark:bg-dark-200 fixed z-50 w-full gap-5 p-6 shadow-light-300 dark:shadow-none sm:px-12">
       <Link href={ROUTES.HOME} className="flex items-center gap-1">
         <Image
           src="/images/site-logo.svg"
@@ -29,7 +29,7 @@ const Navbar = async () => {
 
       <GlobalSearch />
 
-      <div className="flex-between gap-5">
+      <div className="flex items-center justify-between gap-5">
         <Theme />
         {session?.user?.id && (
           <UserAvatar

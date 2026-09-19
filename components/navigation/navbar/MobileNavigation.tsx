@@ -28,13 +28,13 @@ const MobileNavigation = async () => {
             width={36}
             height={36}
             alt="Menu"
-            className="invert-colors sm:hidden"
+            className="invert dark:invert-0 sm:hidden"
           />
         }
       />
       <SheetContent
         side="left"
-        className="background-light900_dark200 border-none"
+        className="bg-light-900 dark:bg-dark-200 border-none"
       >
         <SheetTitle className="hidden">Navigation</SheetTitle>
         <Link href="/" className="flex items-center gap-1">
@@ -45,7 +45,7 @@ const MobileNavigation = async () => {
             alt="Logo"
           />
 
-          <p className="h2-bold font-space-grotesk text-dark-100 dark:text-light-900">
+          <p className="text-heading font-space-grotesk text-dark-100 dark:text-light-900">
             Dev<span className="text-primary-500">Flow</span>
           </p>
         </Link>
@@ -72,22 +72,26 @@ const MobileNavigation = async () => {
               >
                 <Button
                   type="submit"
-                  className="base-medium w-fit !bg-transparent px-4 py-3"
+                  className="text-sm font-medium w-fit !bg-transparent px-4 py-3"
                 >
                   <LogOut className="size-5 text-black dark:text-white" />
-                  <span className="text-dark300_light900">Logout</span>
+                  <span className="text-dark-300 dark:text-light-900">
+                    Logout
+                  </span>
                 </Button>
               </SheetClose>
             ) : (
               <>
                 <SheetClose render={<Link href={ROUTES.SIGN_IN} />}>
-                  <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                    <span className="primary-text-gradient">Log In</span>
+                  <Button className="text-xs font-medium bg-primary-100 dark:bg-dark-400 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                    <span className="bg-linear-to-r from-primary-500 to-primary-500/70 bg-clip-text text-transparent">
+                      Log In
+                    </span>
                   </Button>
                 </SheetClose>
 
                 <SheetClose render={<Link href={ROUTES.SIGN_UP} />}>
-                  <Button className="small-medium light-border-2 btn-tertiary text-dark400_light900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
+                  <Button className="text-xs font-medium border-light-800 dark:border-dark-300 bg-light-800 dark:bg-dark-300 text-dark-400 dark:text-light-900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
                     Sign Up
                   </Button>
                 </SheetClose>

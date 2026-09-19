@@ -66,13 +66,13 @@ const ProfileForm = ({ user }: Params) => {
           <Field data-invalid={!!fieldState.error} className="space-y-3.5">
             <FieldLabel
               htmlFor={field.name}
-              className="paragraph-semibold text-dark400_light800"
+              className="text-base font-semibold text-dark-400 dark:text-light-800"
             >
               Name <span className="text-primary-500">*</span>
             </FieldLabel>
             <Input
               id={field.name}
-              className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-base font-normal border-light-800 dark:border-dark-300 bg-light-800 dark:bg-dark-300 text-dark-300 dark:text-light-700 min-h-[56px] border"
               placeholder="Your Name"
               {...field}
             />
@@ -88,13 +88,13 @@ const ProfileForm = ({ user }: Params) => {
           <Field data-invalid={!!fieldState.error} className="space-y-3.5">
             <FieldLabel
               htmlFor={field.name}
-              className="paragraph-semibold text-dark400_light800"
+              className="text-base font-semibold text-dark-400 dark:text-light-800"
             >
               Username <span className="text-primary-500">*</span>
             </FieldLabel>
             <Input
               id={field.name}
-              className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-base font-normal border-light-800 dark:border-dark-300 bg-light-800 dark:bg-dark-300 text-dark-300 dark:text-light-700 min-h-[56px] border"
               placeholder="Your username"
               {...field}
             />
@@ -110,14 +110,14 @@ const ProfileForm = ({ user }: Params) => {
           <Field data-invalid={!!fieldState.error} className="space-y-3.5">
             <FieldLabel
               htmlFor={field.name}
-              className="paragraph-semibold text-dark400_light800"
+              className="text-base font-semibold text-dark-400 dark:text-light-800"
             >
               Portfolio Link
             </FieldLabel>
             <Input
               id={field.name}
               type="url"
-              className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-base font-normal border-light-800 dark:border-dark-300 bg-light-800 dark:bg-dark-300 text-dark-300 dark:text-light-700 min-h-[56px] border"
               placeholder="Your Portfolio link"
               {...field}
             />
@@ -133,13 +133,13 @@ const ProfileForm = ({ user }: Params) => {
           <Field data-invalid={!!fieldState.error} className="space-y-3.5">
             <FieldLabel
               htmlFor={field.name}
-              className="paragraph-semibold text-dark400_light800"
+              className="text-base font-semibold text-dark-400 dark:text-light-800"
             >
               Location <span className="text-primary-500">*</span>
             </FieldLabel>
             <Input
               id={field.name}
-              className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-base font-normal border-light-800 dark:border-dark-300 bg-light-800 dark:bg-dark-300 text-dark-300 dark:text-light-700 min-h-[56px] border"
               placeholder="Where do you live?"
               {...field}
             />
@@ -155,14 +155,14 @@ const ProfileForm = ({ user }: Params) => {
           <Field data-invalid={!!fieldState.error} className="space-y-3.5">
             <FieldLabel
               htmlFor={field.name}
-              className="paragraph-semibold text-dark400_light800"
+              className="text-base font-semibold text-dark-400 dark:text-light-800"
             >
               Bio <span className="text-primary-500">*</span>
             </FieldLabel>
             <Textarea
               id={field.name}
               rows={5}
-              className="no-focus paragraph-regular light-border-2 background-light800_dark300 text-dark300_light700 min-h-[56px] border"
+              className="focus-visible:ring-0 focus-visible:ring-offset-0 text-base font-normal border-light-800 dark:border-dark-300 bg-light-800 dark:bg-dark-300 text-dark-300 dark:text-light-700 min-h-[56px] border"
               placeholder="What's special about you?"
               {...field}
             />
@@ -174,7 +174,7 @@ const ProfileForm = ({ user }: Params) => {
       <div className="mt-7 flex justify-end">
         <Button
           type="submit"
-          className="primary-gradient w-fit"
+          className="bg-linear-to-r from-primary-500 to-primary-500/70 w-fit"
           disabled={isPending}
         >
           {isPending ? (

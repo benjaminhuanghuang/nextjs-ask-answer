@@ -67,14 +67,14 @@ const GlobalResult = () => {
       <div className="my-5 h-[1px] bg-light-700/50 dark:bg-dark-500/50" />
 
       <div className="space-y-5">
-        <p className="text-dark400_light900 paragraph-semibold px-5">
+        <p className="text-dark-400 dark:text-light-900 text-base font-semibold px-5">
           Top Match
         </p>
 
         {isLoading ? (
-          <div className="flex-center flex-col px-5">
+          <div className="flex items-center justify-center flex-col px-5">
             <ReloadIcon className="my-2 h-10 w-10 animate-spin text-primary-500" />
-            <p className="text-dark200_light800 body-regular">
+            <p className="text-dark-200 dark:text-light-800 text-sm font-normal">
               Browsing the whole database..
             </p>
           </div>
@@ -92,23 +92,23 @@ const GlobalResult = () => {
                     alt="tags"
                     width={18}
                     height={18}
-                    className="invert-colors mt-1 object-contain"
+                    className="invert dark:invert-0 mt-1 object-contain"
                   />
 
                   <div className="flex flex-col">
-                    <p className="body-medium text-dark200_light800 line-clamp-1">
+                    <p className="text-sm font-medium text-dark-200 dark:text-light-800 line-clamp-1">
                       {item.title}
                     </p>
-                    <p className="text-light400_light500 small-medium mt-1 font-bold capitalize">
+                    <p className="text-light-400 dark:text-light-500 text-xs mt-1 font-bold capitalize">
                       {item.type}
                     </p>
                   </div>
                 </Link>
               ))
             ) : (
-              <div className="flex-center flex-col px-5">
+              <div className="flex items-center justify-center flex-col px-5">
                 <p className="text-5xl">🫣</p>
-                <p className="text-dark200_light800 body-regular px-5 py-2.5">
+                <p className="text-dark-200 dark:text-light-800 text-sm font-normal px-5 py-2.5">
                   Oops, no results found
                 </p>
               </div>

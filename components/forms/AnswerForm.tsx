@@ -7,18 +7,12 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRef, useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
-import { toast } from "@/hooks/use-toast";
+import { Field, FieldError } from "@/components/ui/field";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { api } from "@/lib/api";
 import { AnswerSchema } from "@/lib/validations";
@@ -57,19 +51,14 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
       if (result.success) {
         form.reset();
 
-        toast({
-          title: "Success",
-          description: "Your answer has been posted successfully",
-        });
+        toast.success("Your answer has been posted successfully");
 
         if (editorRef.current) {
           editorRef.current.setMarkdown("");
         }
       } else {
-        toast({
-          title: "Error",
+        toast.error("Error", {
           description: result.error?.message,
-          variant: "destructive",
         });
       }
     });
@@ -77,8 +66,7 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
 
   const generateAIAnswer = async () => {
     if (session.status !== "authenticated") {
-      return toast({
-        title: "Please log in",
+      return toast("Please log in", {
         description: "You need to be logged in to use this feature",
       });
     }
@@ -95,10 +83,8 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
       );
 
       if (!success) {
-        return toast({
-          title: "Error",
+        return toast.error("Error", {
           description: error?.message,
-          variant: "destructive",
         });
       }
 
@@ -111,18 +97,13 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
         form.trigger("content");
       }
 
-      toast({
-        title: "Success",
-        description: "AI generated answer has been generated",
-      });
+      toast.success("AI generated answer has been generated");
     } catch (error) {
-      toast({
-        title: "Error",
+      toast.error("Error", {
         description:
           error instanceof Error
             ? error.message
             : "There was a problem with your request",
-        variant: "destructive",
       });
     } finally {
       setIsAISubmitting(false);
@@ -132,11 +113,11 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
   return (
     <div>
       <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-center sm:gap-2">
-        <h4 className="paragraph-semibold text-dark400_light800">
+        <h4 className="text-base font-semibold text-dark-400 dark:text-light-800">
           Write your answer here
         </h4>
         <Button
-          className="btn light-border-2 gap-1.5 rounded-md border px-4 py-2.5 text-primary-500 shadow-none dark:text-primary-500"
+          className="btn border-light-800 dark:border-dark-300 gap-1.5 rounded-md border px-4 py-2.5 text-primary-500 shadow-none dark:text-primary-500"
           disabled={isAISubmitting}
           onClick={generateAIAnswer}
         >
@@ -159,42 +140,46 @@ const AnswerForm = ({ questionId, questionTitle, questionContent }: Props) => {
           )}
         </Button>
       </div>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(handleSubmit)}
-          className="mt-6 flex w-full flex-col gap-10"
-        >
-          <FormField
-            control={form.control}
-            name="content"
-            render={({ field }) => (
-              <FormItem className="flex w-full flex-col gap-3">
-                <FormControl className="mt-3.5">
-                  <Editor
-                    value={field.value}
-                    editorRef={editorRef}
-                    fieldChange={field.onChange}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="mt-6 flex w-full flex-col gap-10"
+      >
+        <Controller
+          control={form.control}
+          name="content"
+          render={({ field, fieldState }) => (
+            <Field
+              data-invalid={!!fieldState.error}
+              className="flex w-full flex-col gap-3"
+            >
+              <div className="mt-3.5">
+                <Editor
+                  value={field.value}
+                  editorRef={editorRef}
+                  fieldChange={field.onChange}
+                />
+              </div>
+              <FieldError errors={fieldState.error ? [fieldState.error] : []} />
+            </Field>
+          )}
+        />
 
-          <div className="flex justify-end">
-            <Button type="submit" className="primary-gradient w-fit">
-              {isAnswering ? (
-                <>
-                  <ReloadIcon className="mr-2 size-4 animate-spin" />
-                  Posting...
-                </>
-              ) : (
-                "Post Answer"
-              )}
-            </Button>
-          </div>
-        </form>
-      </Form>
+        <div className="flex justify-end">
+          <Button
+            type="submit"
+            className="bg-linear-to-r from-primary-500 to-primary-500/70 w-fit"
+          >
+            {isAnswering ? (
+              <>
+                <ReloadIcon className="mr-2 size-4 animate-spin" />
+                Posting...
+              </>
+            ) : (
+              "Post Answer"
+            )}
+          </Button>
+        </div>
+      </form>
     </div>
   );
 };

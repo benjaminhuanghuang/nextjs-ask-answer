@@ -22,7 +22,7 @@ const Navbar = async () => {
           alt="Dev Overflow Logo"
         />
 
-        <p className="text-[24px] font-bold leading-[31.2px] font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden">
+        <p className="text-heading font-space-grotesk text-dark-100 dark:text-light-900 max-sm:hidden">
           Question<span className="text-primary-500">Answer</span>
         </p>
       </Link>

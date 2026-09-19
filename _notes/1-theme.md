@@ -22,3 +22,13 @@ Use ThemeProvider in the RootLayout
 ```
 
 ## Theme toggle
+
+components/navigation/navbar/Theme.tsx
+
+```tsx
+import { useTheme } from "next-themes";
+
+const { setTheme } = useTheme();
+
+setTheme("system");
+```

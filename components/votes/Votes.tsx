@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { use, useState } from "react";
 
-import { toast } from "@/hooks/use-toast";
+import { toast } from "sonner";
 import { createVote } from "@/lib/actions/vote.action";
 import { formatNumber } from "@/lib/utils";
 
@@ -34,8 +34,7 @@ const Votes = ({
 
   const handleVote = async (voteType: "upvote" | "downvote") => {
     if (!userId)
-      return toast({
-        title: "Please login to vote",
+      return toast.info("Please login to vote", {
         description: "Only logged-in users can vote.",
       });
 
@@ -49,10 +48,8 @@ const Votes = ({
       });
 
       if (!result.success) {
-        return toast({
-          title: "Failed to vote",
+        return toast.error("Failed to vote", {
           description: result.error?.message,
-          variant: "destructive",
         });
       }
 
@@ -61,15 +58,12 @@ const Votes = ({
           ? `Upvote ${!hasUpvoted ? "added" : "removed"} successfully`
           : `Downvote ${!hasDownvoted ? "added" : "removed"} successfully`;
 
-      toast({
-        title: successMessage,
+      toast.success(successMessage, {
         description: "Your vote has been recorded.",
       });
     } catch {
-      toast({
-        title: "Failed to vote",
+      toast.error("Failed to vote", {
         description: "An error occurred while voting. Please try again later.",
-        variant: "destructive",
       });
     } finally {
       setIsLoading(false);

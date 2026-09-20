@@ -29,7 +29,7 @@ const RightSidebar = async () => {
           success={success}
           error={error}
           render={(hotQuestions) => (
-            <div className="mt-7 flex w-full flex-col gap-[30px]">
+            <div className="mt-7 flex w-full flex-col gap-7.5 ">
               {hotQuestions.map(({ _id, title }) => (
                 <Link
                   key={_id}

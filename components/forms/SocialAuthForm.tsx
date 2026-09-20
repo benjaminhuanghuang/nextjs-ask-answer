@@ -14,10 +14,18 @@ const SocialAuthForm = () => {
 
   const handleSignIn = async (provider: "github" | "google") => {
     try {
-      await signIn(provider, {
+      const result = await signIn(provider, {
         callbackUrl: ROUTES.HOME,
         redirect: false,
       });
+
+      if (result?.error) {
+        throw new Error(result.error);
+      }
+
+      if (result?.url) {
+        window.location.href = result.url;
+      }
     } catch (error) {
       console.log(error);
 

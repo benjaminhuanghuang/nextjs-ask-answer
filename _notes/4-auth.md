@@ -27,7 +27,7 @@ AUTH_GITHUB_SECRET=
 
 ```
 
-Create /middleware.ts
+Create /proxy.ts (Next.js v16)
 Create /auth.ts
 
 Add Route Handler
@@ -40,6 +40,15 @@ Github Settings -> Developer settings -> New OAth App
 Homepage URL: http://localhost:3000
 
 Authorization callback URL: http://localhost:3000/api/auth/callback/github
+
+Copy Client ID and Secret
+
+## Setup google
+
+console.cloud.google.com -> Create project -> API & service -> OAuth ->
+
+Authed JS: http://localhost:3000
+Authorized redirect URL: http://localhost:3000/api/auth/callback/goodle
 
 Copy Client ID and Secret
 
@@ -64,4 +73,26 @@ import { SessionProvider } from "next-auth/react";
 <SessionProvider session={session}>
   <body></body>
 </SessionProvider>;
+```
+
+## Logout(server side)
+
+```js
+import { auth, signOut } from "@/auth";
+const Home = async () => {
+  const session = await auth();
+
+  return (
+    <>
+      <form
+        action={async () => {
+          "use server";
+          await signOut({ redirectTo: ROUTES.SIGN_IN });
+        }}
+      >
+        <Button type="submit">Log out</Button>
+      </form>
+    </>
+  );
+};
 ```

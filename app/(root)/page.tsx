@@ -34,9 +34,11 @@ async function Home({ searchParams }: RouteParams) {
   return (
     <>
       <section className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
-        <h1 className="h1-bold text-dark100_light900">All Questions</h1>
+        <h1 className="text-display text-dark-100 dark:text-light-900">
+          All Questions
+        </h1>
         <Button
-          className="primary-gradient min-h-11.5 px-4 py-3 text-light-900!"
+          className="bg-linear-to-r from-primary-500 to-primary-500/70 min-h-11.5 px-4 py-3 text-light-900!"
           nativeButton={false}
           render={<Link href={ROUTES.ASK_QUESTION} className="max-sm:w-full" />}
         >

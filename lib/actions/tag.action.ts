@@ -1,4 +1,4 @@
-import { FilterQuery } from "mongoose";
+import { QueryFilter } from "mongoose";
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import {
@@ -24,7 +24,7 @@ export const getTags = async (
   const skip = (Number(page) - 1) * pageSize;
   const limit = Number(pageSize);
 
-  const filterQuery: FilterQuery<typeof Tag> = {};
+  const filterQuery: QueryFilter<typeof Tag> = {};
 
   if (query) {
     filterQuery.$or = [{ name: { $regex: query, $options: "i" } }];
@@ -95,7 +95,7 @@ export const getTagQuestions = async (
     const tag = await Tag.findById(tagId);
     if (!tag) throw new Error("Tag not found");
 
-    const filterQuery: FilterQuery<typeof Question> = {
+    const filterQuery: QueryFilter<typeof Question> = {
       tags: { $in: [tagId] },
     };
 

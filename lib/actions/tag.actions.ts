@@ -1,4 +1,4 @@
-import { FilterQuery } from "mongoose";
+import { QueryFilter } from "mongoose";
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import { PaginatedSearchParamsSchema } from "../validations";
@@ -22,7 +22,7 @@ export const getTags = async (
   const skip = (Number(page) - 1) * pageSize;
   const limit = Number(pageSize);
 
-  const filterQuery: FilterQuery<typeof Tag> = {};
+  const filterQuery: QueryFilter<typeof Tag> = {};
 
   if (query) {
     filterQuery.$or = [{ name: { $regex: query, $options: "i" } }];

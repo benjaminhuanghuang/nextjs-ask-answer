@@ -5,6 +5,9 @@ import { ThemeProvider } from "next-themes";
 import { Geist } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { SessionProvider } from "next-auth/react";
+import { auth } from "@/auth";
+import { ReactNode } from "react";
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -26,7 +29,9 @@ export const metadata: Metadata = {
   description: "Next.js fullstack App for question and answer",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth();
+
   // className actually applies the font; variable applies nothing, it just stores the font name in a CSS variable.
   return (
     <html
@@ -34,19 +39,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
       className={cn("font-sans", geist.variable)}
     >
-      <body
-        className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
+      <SessionProvider session={session}>
+        <body
+          className={`${inter.className} ${spaceGrotesk.variable} antialiased`}
         >
-          {children}
-        </ThemeProvider>
-        <Toaster richColors position="top-right" />
-      </body>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+          <Toaster richColors position="top-right" />
+        </body>
+      </SessionProvider>
     </html>
   );
-}
+};
+
+export default RootLayout;

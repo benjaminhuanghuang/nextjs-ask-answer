@@ -24,7 +24,9 @@ const JobsFilter = ({ countriesList }: JobsFilterProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const handleUpdateParams = (value: string) => {
+  const handleUpdateParams = (value: unknown) => {
+    if (typeof value !== "string") return;
+
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
       key: "location",

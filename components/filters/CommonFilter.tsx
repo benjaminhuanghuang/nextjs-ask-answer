@@ -34,7 +34,9 @@ const CommonFilter = ({
 
   const paramsFilter = searchParams.get("filter");
 
-  const handleUpdateParams = (value: string) => {
+  const handleUpdateParams = (value: string | null) => {
+    if (!value) return;
+
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
       key: "filter",

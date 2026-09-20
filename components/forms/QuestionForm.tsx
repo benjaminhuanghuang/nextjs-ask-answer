@@ -88,14 +88,15 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
     startTransition(async () => {
       if (isEdit && question) {
         const result = await editQuestion({
-          questionId: question?._id,
+          questionId: question?._id.toString(),
           ...data,
         });
 
         if (result.success) {
           toast.success("Question updated successfully");
 
-          if (result.data) router.push(ROUTES.QUESTION(result.data._id));
+          if (result.data)
+            router.push(ROUTES.QUESTION(result.data._id.toString()));
         } else {
           toast.error(`Error ${result.status}`, {
             description: result.error?.message || "Something went wrong",
@@ -110,7 +111,8 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
       if (result.success) {
         toast.success("Question created successfully");
 
-        if (result.data) router.push(ROUTES.QUESTION(result.data._id));
+        if (result.data)
+          router.push(ROUTES.QUESTION(result.data._id.toString()));
       } else {
         toast.error(`Error ${result.status}`, {
           description: result.error?.message || "Something went wrong",
@@ -128,7 +130,10 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
         control={form.control}
         name="title"
         render={({ field, fieldState }) => (
-          <Field data-invalid={!!fieldState.error} className="flex w-full flex-col">
+          <Field
+            data-invalid={!!fieldState.error}
+            className="flex w-full flex-col"
+          >
             <FieldLabel
               htmlFor={field.name}
               className="text-base font-semibold text-dark-400 dark:text-light-800"
@@ -152,7 +157,10 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
         control={form.control}
         name="content"
         render={({ field, fieldState }) => (
-          <Field data-invalid={!!fieldState.error} className="flex w-full flex-col">
+          <Field
+            data-invalid={!!fieldState.error}
+            className="flex w-full flex-col"
+          >
             <FieldLabel
               htmlFor={field.name}
               className="text-base font-semibold text-dark-400 dark:text-light-800"
@@ -211,8 +219,8 @@ const QuestionForm = ({ question, isEdit = false }: Params) => {
               )}
             </div>
             <FieldDescription className="text-sm font-normal mt-2.5 text-light-500">
-              Add up to 3 tags to describe what your question is about. You
-              need to press enter to add a tag.
+              Add up to 3 tags to describe what your question is about. You need
+              to press enter to add a tag.
             </FieldDescription>
             <FieldError errors={fieldState.error ? [fieldState.error] : []} />
           </Field>

@@ -48,7 +48,7 @@ Copy Client ID and Secret
 console.cloud.google.com -> Create project -> API & service -> OAuth ->
 
 Authed JS: http://localhost:3000
-Authorized redirect URL: http://localhost:3000/api/auth/callback/goodle
+Authorized redirect URL: http://localhost:3000/api/auth/callback/google
 
 Copy Client ID and Secret
 

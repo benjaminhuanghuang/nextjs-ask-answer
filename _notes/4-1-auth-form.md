@@ -6,3 +6,9 @@ https://www.shadcn-ui.cn/docs/components/form
 ```sh
 npm i react-hook-form zod
 ```
+
+sin-in page and sign-up page will pass schema to AuthForm
+
+## Schema
+
+lib/validations.ts

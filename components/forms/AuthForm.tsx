@@ -20,7 +20,7 @@ import { Input } from "@/components/ui/input";
 import ROUTES from "@/constants/routes";
 
 interface AuthFormProps<T extends FieldValues> {
-  schema: ZodType<T>;
+  schema: ZodType<T, T>;
   defaultValues: T;
   onSubmit: (data: T) => Promise<ActionResponse>;
   formType: "SIGN_IN" | "SIGN_UP";

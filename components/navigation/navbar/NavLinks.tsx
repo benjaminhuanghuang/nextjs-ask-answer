@@ -30,10 +30,10 @@ const NavLinks = ({
         }
 
         const linkClassName = cn(
+          "flex items-center justify-start gap-4 p-4",
           isActive
-            ? "primary-gradient rounded-lg text-light-900"
-            : "text-dark300_light900",
-          "flex items-center justify-start gap-4 bg-transparent p-4"
+            ? "bg-linear-to-r from-primary-500 to-primary-500/70 rounded-lg text-light-900"
+            : "bg-transparent text-dark-300 dark:text-light-900"
         );
 
         const linkChildren = (
@@ -60,6 +60,7 @@ const NavLinks = ({
         return isMobileNav ? (
           <SheetClose
             key={item.route}
+            nativeButton={false}
             render={<Link href={item.route} className={linkClassName} />}
           >
             {linkChildren}

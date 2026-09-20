@@ -21,7 +21,9 @@ const MobileNavigation = async () => {
 
   return (
     <Sheet>
+      {/* Only displayed on screen smaller than sm */}
       <SheetTrigger
+        nativeButton={false}
         render={
           <Image
             src="/icons/hamburger.svg"
@@ -52,6 +54,7 @@ const MobileNavigation = async () => {
 
         <div className="no-scrollbar flex h-[calc(100vh-80px)] flex-col justify-between overflow-y-auto">
           <SheetClose
+            nativeButton={false}
             render={<section className="flex h-full flex-col gap-6 pt-16" />}
           >
             <NavLinks isMobileNav />
@@ -60,6 +63,7 @@ const MobileNavigation = async () => {
           <div className="flex flex-col gap-3">
             {userId ? (
               <SheetClose
+                nativeButton={false}
                 render={
                   <form
                     action={async () => {
@@ -72,7 +76,7 @@ const MobileNavigation = async () => {
               >
                 <Button
                   type="submit"
-                  className="text-sm font-medium w-fit !bg-transparent px-4 py-3"
+                  className="text-sm font-medium w-fit bg-transparent! px-4 py-3"
                 >
                   <LogOut className="size-5 text-black dark:text-white" />
                   <span className="text-dark-300 dark:text-light-900">
@@ -82,15 +86,21 @@ const MobileNavigation = async () => {
               </SheetClose>
             ) : (
               <>
-                <SheetClose render={<Link href={ROUTES.SIGN_IN} />}>
-                  <Button className="text-xs font-medium bg-primary-100 dark:bg-dark-400 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                <SheetClose
+                  nativeButton={false}
+                  render={<Link href={ROUTES.SIGN_IN} />}
+                >
+                  <Button className="text-xs font-medium bg-primary-100 dark:bg-dark-400 min-h-10.25 w-full rounded-lg px-4 py-3 shadow-none">
                     <span className="bg-linear-to-r from-primary-500 to-primary-500/70 bg-clip-text text-transparent">
                       Log In
                     </span>
                   </Button>
                 </SheetClose>
 
-                <SheetClose render={<Link href={ROUTES.SIGN_UP} />}>
+                <SheetClose
+                  nativeButton={false}
+                  render={<Link href={ROUTES.SIGN_UP} />}
+                >
                   <Button className="text-xs font-medium border-light-800 dark:border-dark-300 bg-light-800 dark:bg-dark-300 text-dark-400 dark:text-light-900 min-h-[41px] w-full rounded-lg border px-4 py-3 shadow-none">
                     Sign Up
                   </Button>

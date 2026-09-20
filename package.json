@@ -21,7 +21,6 @@
     "next-auth": "^5.0.0-beta.32",
     "next-themes": "^0.4.6",
     "pino": "^10.3.1",
-    "pinp": "^1.4.0",
     "query-string": "^9.5.1",
     "react": "19.2.8",
     "react-dom": "19.2.8",
